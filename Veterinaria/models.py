@@ -15,8 +15,8 @@ class Duenos(models.Model):
         return self.nombre
 
 class Mascotas(models.Model):
-    id_dueno = models.ForeignKey(Duenos, on_delete=models.CASCADE)
     id_mascota = models.AutoField(primary_key=True)
+    id_dueno = models.ForeignKey(Duenos, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=50)
     sexo = models.CharField(max_length=10, choices=[('Masculino', 'MASCULINO'), ('Femenino', 'FEMENINO')], default='Masculino')
     raza = models.CharField(max_length=25)
@@ -27,3 +27,18 @@ class Mascotas(models.Model):
         
     def __str__(self):
         return self.nombre
+    
+class Citas(models.Model):
+    id_cita = models.AutoField(primary_key=True)
+    id_mascota = models.ForeignKey(Mascotas, on_delete=models.CASCADE)
+    fecha = models.DateField()
+    hora = models.TimeField()
+    tipo_cita = models.CharField(max_length=100)
+    status = models.CharField(max_length=10, choices=[('Done', 'DONE'), ('Canceled', 'CANCELED')], default='Done')
+    class Meta:
+        verbose_name_plural = "Citas"
+        
+    def __str__(self):
+        return f'{self.id_mascota} - {self.fecha} - {self.hora} - {self.tipo_cita}'
+        #return self.id_mascota + '' + self.fecha + '' + self.hora + '' + self.tipo_cita
+

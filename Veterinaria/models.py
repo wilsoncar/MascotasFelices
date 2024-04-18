@@ -42,3 +42,15 @@ class Citas(models.Model):
         return f'{self.id_mascota} - {self.fecha} - {self.hora} - {self.tipo_cita}'
         #return self.id_mascota + '' + self.fecha + '' + self.hora + '' + self.tipo_cita
 
+class Desparasitaciones(models.Model):
+    id_desparasitacion = models.AutoField(primary_key=True)
+    id_mascota = models.ForeignKey(Mascotas, on_delete=models.CASCADE)
+    tipo = models.CharField(max_length=100)
+    fecha = models.DateField()
+    status = models.CharField(max_length=20, choices=[('Completado', 'COMPLETADO'), ('No completado', 'No completado')], default='Completado')
+    class Meta:
+        verbose_name_plural = "Desparasitaciones"
+        
+    def __str__(self):
+        return f'{self.id_mascota} - {self.fecha} - {self.tipo}'
+

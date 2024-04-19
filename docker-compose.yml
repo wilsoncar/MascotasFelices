@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+#Base de datos
+  postgresdb:
+    image: postgres:13
+    container_name: postgresdb
+    restart: always
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+      - DBUSER=postgres
+      - DBPASSWORD=postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - mascotasdb:/var/lib/postgresql/data
+#ServidorWeb
+  webmascotas:
+    build: .
+    command: python /code/manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code
+    container_name: backendmascotas      
+    depends_on:     
+      - postgresdb
+    ports:
+      - 8000:8000
+volumes:
+  mascotasdb:

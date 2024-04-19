@@ -81,7 +81,7 @@ DATABASES = {
         "NAME": "postgres",
         "USER": "postgres",
         "PASSWORD": "postgres",
-        "HOST": "localhost",
+        "HOST": "postgresdb",   #postgresdb
         "PORT": '',
     }
 }
@@ -128,5 +128,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-DATE_INPUT_FORMATS = ["%d.%m.%Y"]
-USE_L10N = False
+

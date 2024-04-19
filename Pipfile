@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 asgiref = "==3.7.2"
-django = "==5.0.2"
+django = "*"
 django-extensions = "==3.2.3"
 djangorestframework = "==3.15.1"
 psycopg2 = "==2.9.9"

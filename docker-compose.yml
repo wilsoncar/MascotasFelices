@@ -5,9 +5,9 @@ services:
   postgresdb:
     image: postgres:13
     container_name: postgresdb
-    restart: always
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_DB=mascotasdb
       - DBUSER=postgres
       - DBPASSWORD=postgres
     ports:
